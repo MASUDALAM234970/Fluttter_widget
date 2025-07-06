@@ -1,1 +1,75 @@
 
+import 'package:demo6/page1.dart';
+import 'package:demo6/page2.dart';
+import 'package:demo6/page3.dart';
+import 'package:flutter/material.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
+
+void main () => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+   var currentindex =0;
+   final Pages= [
+     Page1(),
+     Page2(),
+     Page3()
+   ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      bottomNavigationBar: BottomNavigationBar(items: [
+
+        BottomNavigationBarItem(
+            backgroundColor: Colors.redAccent,
+
+            icon: Icon ((Icons.message)),
+            label: "message"
+        ),
+
+        BottomNavigationBarItem(
+            icon: Icon ((Icons.message)),
+            label: "message"
+        ),   BottomNavigationBarItem(
+            icon: Icon ((Icons.call)),
+            label: "Call"
+        ),   BottomNavigationBarItem(
+            icon: Icon ((Icons.pan_tool)),
+            label: "hand"
+        ),   BottomNavigationBarItem(
+            icon: Icon ((Icons.radio)),
+            label: "radio"
+        ),
+
+
+      ],
+        onTap: (index){
+        setState(() {
+         currentindex =index;
+        });
+    },
+      ),
+      body:Pages[currentindex],
+    );
+  }
+}

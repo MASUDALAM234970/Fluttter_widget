@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+         child: RichText(text: TextSpan(
+           text: "Easy Explanation",style: TextStyle(fontSize: 20, color: Colors.blue),
+           children: [
+             TextSpan(
+               text: "Subscribe" ,style: TextStyle(fontSize: 25, color: Colors.green)
+             )
+           ]
+         )),
+        ),
+      ),
+    );
+  }
+}

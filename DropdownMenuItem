@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String selected = "Explanation"; // must match one of the values
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                selected,
+                style: TextStyle(fontSize: 50),
+              ),
+              DropdownButton<String>(
+                value: selected,
+                items: [
+                  DropdownMenuItem(
+                    value: "Explanation",
+                    child: Text("Explanation"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Nothing",
+                    child: Text("Nothing"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Easy",
+                    child: Text("Easy"),
+                  ),
+                ],
+                onChanged: (val) {
+                  setState(() {
+                    selected = val!;
+                    Fluttertoast.showToast(msg: "Selected: $selected");
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

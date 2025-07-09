@@ -1,0 +1,79 @@
+import 'package:demo6/one.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:introduction_screen/introduction_screen.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Splash(),
+    );
+  }
+}
+
+class Splash extends StatefulWidget {
+  const Splash({super.key});
+
+  @override
+  State<Splash> createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  @override
+  Widget build(BuildContext context) {
+    return IntroductionScreen(
+      pages: [
+        PageViewModel(
+          title: "Welcome",
+          body: "This is our first onboarding page.",
+          image: Image.network(
+            "https://picsum.photos/id/1011/500/300",
+            width: 350,
+          ),
+        ),
+        PageViewModel(
+          title: "Discover",
+          body: "Here you can discover new features.",
+          image: Image.network(
+            "https://picsum.photos/id/1015/500/300",
+            width: 350,
+          ),
+        ),
+        PageViewModel(
+          title: "Get Started",
+          body: "Let’s get started with our amazing app!",
+          image: Image.network(
+            "https://picsum.photos/id/1016/500/300",
+            width: 350,
+          ),
+        ),
+      ],
+      onDone: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => One()),
+        );
+      },
+      done: Text("Done"),
+      showSkipButton: true,
+      skip: Text("Skip"),
+      next: Icon(Icons.arrow_forward), // ✅ THIS IS REQUIRED!
+      dotsDecorator: DotsDecorator(
+        size: Size(10.0, 10.0),
+        color: Colors.grey,
+        activeSize: Size(22.0, 10.0),
+        activeShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        ),
+      ),
+    );
+  }
+}
